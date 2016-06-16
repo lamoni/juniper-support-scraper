@@ -72,51 +72,55 @@ def getFilename(input_url):
     return basename(urlparse(input_url).path)
 
 # Main
-args = argsInit()
-storage = StringIO()
-clearCookies()
+def main():
+    args = argsInit()
+    storage = StringIO()
+    clearCookies()
 
-# 1. Get initial page so our cookies get set
-executeCurl(args.url)
+    # 1. Get initial page so our cookies get set
+    executeCurl(args.url)
 
-# 2. Send login credentials
-executeCurl(
-    input_url="https://webdownload.juniper.net/access/oblix/apps/webgate/bin/webgate.so",
-    params={
-        'HiddenURI': '',
-        'LOCALE': 'en_us',
-        'AUTHMETHOD': 'UserPassword',
-        'username': args.username,
-        'password': args.password
+    # 2. Send login credentials
+    executeCurl(
+        input_url="https://webdownload.juniper.net/access/oblix/apps/webgate/bin/webgate.so",
+        params={
+            'HiddenURI': '',
+            'LOCALE': 'en_us',
+            'AUTHMETHOD': 'UserPassword',
+            'username': args.username,
+            'password': args.password
 
-    }
-)
+        }
+    )
 
-# 3. Get to EULA page and submit
-executeCurl(
-    input_url="https://webdownload.juniper.net/swdl/dl/download",
-    params={
-        'recordId': getRecordID(args.url),
-        'siteId': '1',
-        'eulaAccepted': 'Yes'
-    },
-    write_function=storage.write
-)
+    # 3. Get to EULA page and submit
+    executeCurl(
+        input_url="https://webdownload.juniper.net/swdl/dl/download",
+        params={
+            'recordId': getRecordID(args.url),
+            'siteId': '1',
+            'eulaAccepted': 'Yes'
+        },
+        write_function=storage.write
+    )
 
-# 4. Parse download URL from content
-download_link = getDownloadLink(storage.getvalue())
+    # 4. Parse download URL from content
+    download_link = getDownloadLink(storage.getvalue())
 
-# 5. Calculate filename
-filename = getFilename(download_link)
+    # 5. Calculate filename
+    filename = getFilename(download_link)
 
-print "Downloading..."
-fp = open(filename, "wb")
+    print "Downloading..."
+    fp = open(filename, "wb")
 
-#6 . Download the file
-downloadFile(download_link, fp)
+    #6 . Download the file
+    downloadFile(download_link, fp)
 
-fp.close()
+    fp.close()
 
-clearCookies()
+    clearCookies()
 
-print "Done"
+    print "Done"
+
+if __name__ == "__main__":
+    main()
