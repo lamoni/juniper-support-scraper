@@ -1,5 +1,5 @@
 # Juniper Support Scraper
-This python script is used for downloading files (e.g. Junos Space Virtual Appliance, Service Now, Junos, etc...) from support.juniper.net
+This python script/module is used for downloading files (e.g. Junos Space Virtual Appliance, Service Now, Junos, etc...) from support.juniper.net
 
 # Usage
 1. Get link to software from support.juniper.net by going to page of software you want (e.g. https://www.juniper.net/support/downloads/?p=servicenow#sw), and copying the link of the desired software version (it will look like: https://webdownload.juniper.net/swdl/dl/secure/site/1/record/60879.html)
