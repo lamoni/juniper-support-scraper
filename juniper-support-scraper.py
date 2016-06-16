@@ -56,7 +56,6 @@ def downloadFile(input_url, write_data):
 def getRecordID(input_url):
     recordID = urlparse(input_url)
     recordID, file_ext = splitext(basename(recordID.path))
-
     return recordID
 
 # Parses page output for actual link to file
@@ -67,6 +66,7 @@ def getDownloadLink(content):
     ).group(1)
     return download_link
 
+# Parses actual file's filename
 def getFilename(input_url):
     return basename(urlparse(input_url).path)
 
@@ -114,10 +114,8 @@ fp = open(filename, "wb")
 #6 . Download the file
 downloadFile(download_link, fp)
 
-
 fp.close()
 
 clearCookies()
-
 
 print "Done"
