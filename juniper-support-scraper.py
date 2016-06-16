@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse, pycurl, os, re
 from urllib import urlencode
 from StringIO import StringIO
