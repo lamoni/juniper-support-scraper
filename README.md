@@ -15,3 +15,7 @@ python juniper-support-scraper.py https://webdownload.juniper.net/swdl/dl/secure
  ```
  python juniper-support-scraper.py https://webdownload.juniper.net/swdl/dl/secure/site/1/record/60879.html JUNIPER_USERNAME_HERE 'JUNIPER_PASSWORD_HERE!!!'
  ```
+
+# Ideas
+ - Catalogue the record IDs of the more popular Juniper software, assign names to them, and allow devs to pull based on name rather than the long-winded record ID URL (.e.g. instead of https://webdownload.juniper.net/swdl/dl/secure/site/1/record/60879.html, we could reference it as "Service_Now_15.1R3")
+ 
