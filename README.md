@@ -16,6 +16,7 @@ python juniper-support-scraper.py https://webdownload.juniper.net/swdl/dl/secure
  python juniper-support-scraper.py https://webdownload.juniper.net/swdl/dl/secure/site/1/record/60879.html JUNIPER_USERNAME_HERE 'JUNIPER_PASSWORD_HERE!!!'
  ```
 
+ - If you try to copy and paste a record link and it is just a link to the current page, click the link so the alert box pops up, and then copy the link from "If you understand this alert and are still certain, you may Continue to Download..."
+
 # Ideas
  - Catalogue the record IDs of the more popular Juniper software, assign names to them, and allow devs to pull based on name rather than the long-winded record ID URL (.e.g. instead of https://webdownload.juniper.net/swdl/dl/secure/site/1/record/60879.html, we could reference it as "Service_Now_15.1R3")
- 
