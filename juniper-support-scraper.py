@@ -71,14 +71,13 @@ def getDownloadLink(content):
 def getFilename(input_url):
     return basename(urlparse(input_url).path)
 
-# Main
-def main():
-    args = argsInit()
+
+def scrape(url, username, password):
     storage = StringIO()
     clearCookies()
 
     # 1. Get initial page so our cookies get set
-    executeCurl(args.url)
+    executeCurl(url)
 
     # 2. Send login credentials
     executeCurl(
@@ -87,8 +86,8 @@ def main():
             'HiddenURI': '',
             'LOCALE': 'en_us',
             'AUTHMETHOD': 'UserPassword',
-            'username': args.username,
-            'password': args.password
+            'username': username,
+            'password': password
 
         }
     )
@@ -97,7 +96,7 @@ def main():
     executeCurl(
         input_url="https://webdownload.juniper.net/swdl/dl/download",
         params={
-            'recordId': getRecordID(args.url),
+            'recordId': getRecordID(url),
             'siteId': '1',
             'eulaAccepted': 'Yes'
         },
@@ -121,6 +120,11 @@ def main():
     clearCookies()
 
     print "Done"
+
+# Main
+def main():
+    args = argsInit()
+    scrape(args.url, args.username, args.password)
 
 if __name__ == "__main__":
     main()
