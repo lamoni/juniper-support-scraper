@@ -13,6 +13,7 @@ def argsInit():
     parser.add_argument("password", help="Password to access support.juniper.net.  "
                                          "Passwords with special characters must be "
                                          "enclosed in single-quotes")
+    parser.add_argument("--output-name", help="Output filename", required=False)
 
     return parser.parse_args()
 
@@ -72,7 +73,7 @@ def getFilename(input_url):
     return basename(urlparse(input_url).path)
 
 
-def scrape(url, username, password):
+def scrape(url, username, password, outputName):
     storage = StringIO()
     clearCookies()
 
@@ -109,6 +110,9 @@ def scrape(url, username, password):
     # 5. Calculate filename
     filename = getFilename(download_link)
 
+    if outputName is not None:
+        filename = outputName
+
     print "Downloading..."
     fp = open(filename, "wb")
 
@@ -124,7 +128,7 @@ def scrape(url, username, password):
 # Main
 def main():
     args = argsInit()
-    scrape(args.url, args.username, args.password)
+    scrape(args.url, args.username, args.password, args.output_name)
 
 if __name__ == "__main__":
     main()
